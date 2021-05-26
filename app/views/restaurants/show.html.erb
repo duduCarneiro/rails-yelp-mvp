@@ -14,6 +14,18 @@
   <strong>Category:</strong>
   <%= @restaurant.category %>
 </p>
-
 <%= link_to 'Back', restaurants_path %> |
-<%= link_to 'Leave a review', new_restaurant_review_path(@restaurant)%>
+
+
+<h1> leave a review </h1>
+<%= simple_form_for [ @restaurant, @review ] do |f| %>
+  <%= f.input :content %>
+  <%= f.input :rating %>
+
+  <%= f.submit "Submit review", class: "btn btn-primary" %>
+<% end %>
+
+
+<% @restaurant.reviews.each do |element| %>
+<p>comment: <%=element.content%> rating: <%=element.rating%></p>
+<% end %>
